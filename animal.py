@@ -40,8 +40,24 @@ class Animal:
         if self.gender not in GENDER:
             self.gender = 'Other'
 
-    def __repr__(self):
-        """ User-friendly description of the animal object. Can be invoked with str(object)."""
+    def get_name(self):
+        """ Get the name of the pet. """
+        return self.name
+
+    def get_breed(self):
+        """ Get the breed of the pet. """
+        return self.breed.lower()
+
+    def get_age(self):
+        """ Get the age of the pet. """
+        return self.age
+
+    def get_gender(self):
+        """ Get the gender of the pet: M, F or Other. """
+        return self.gender
+
+    def __str__(self):
+        """ User-friendly description of the animal object. Can be invoked by str(object)."""
         if self.gender is not 'Other':
             return "{} named {} that is {} and a {}" \
                 .format(self.breed.capitalize(),

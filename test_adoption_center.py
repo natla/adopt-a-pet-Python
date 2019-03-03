@@ -44,13 +44,13 @@ class TestAdoptionService(unittest.TestCase):
     def test_animal_age(self):
         """ Test the age of the animal instances
         """
-        self.assertEqual(self.sharo.age, 5)
-        self.assertNotEqual(self.daisy.age, 512)
+        self.assertEqual(self.sharo.get_age(), 5)
+        self.assertNotEqual(self.daisy.get_age(), 512)
 
     def test_animal_breed(self):
         """ Test the breed of the animal instances
         """
-        self.assertEqual(self.lucy.breed, 'collie')
+        self.assertEqual(self.lucy.get_breed(), 'collie')
         # Akita breed is not in the list of available breeds:
         with self.assertRaises(AssertionError):
             Dog('Mollie', 'Akita', 6, 'Male')
@@ -58,8 +58,8 @@ class TestAdoptionService(unittest.TestCase):
     def test_animal_gender(self):
         """ Test the gender of the animal instances
         """
-        self.assertEqual(self.rocco.gender, 'M')
-        self.assertEqual(Dog('Bobby', 'chow chow', 6, 'Unknown_gender').gender, 'Other')
+        self.assertEqual(self.rocco.get_gender(), 'M')
+        self.assertEqual(Dog('Bobby', 'chow chow', 6, 'Unknown_gender').get_gender(), 'Other')
 
     def test_eat_method(self):
         """ Test the eat method of the animal instances
@@ -96,9 +96,7 @@ class TestAdoptionService(unittest.TestCase):
         # Assert that the lucky cat has been removed from the Cat pool
         self.assertNotIn(result, self.cat_pool)
         # Assert that the user received a proper message
-        self.assertEqual("You adopted a {}."
-                         .format(str(result)),
-                         message)
+        self.assertEqual("You adopted a {}.".format(str(result)), message)
 
 
 if __name__ == '__main__':
